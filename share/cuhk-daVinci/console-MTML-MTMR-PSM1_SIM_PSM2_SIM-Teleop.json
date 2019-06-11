@@ -28,8 +28,7 @@
             "type": "MTM",
             "io": "sawRobotIO1394-MTMR-31519.xml",
             "pid": "sawControllersPID-MTMR.xml",
-            "kinematic": "mtm.json",
-            "gravity-compensation": "gc-MTMR-31519.json"
+            "arm": "MTMR-31519.json"
         }
         ,
         {
@@ -37,16 +36,15 @@
             "type": "MTM",
             "io": "sawRobotIO1394-MTML-41878.xml",
             "pid": "sawControllersPID-MTML.xml",
-            "kinematic": "mtm.json",
-            "gravity-compensation": "gc-MTML-41878.json"
+            "arm": "MTML-41878.json"
         }
     ]
     ,
     "psm-teleops":
     [
         {
-            "mtm": "MTMR",
-            "psm": "PSM1",
+            "master": "MTMR",
+            "slave": "PSM1",
             "type": "TELEOP_PSM",
             "configure-parameter":
             {
@@ -57,8 +55,8 @@
         }
         ,
         {
-            "mtm": "MTML",
-            "psm": "PSM2",
+            "master": "MTML",
+            "slave": "PSM2",
             "type": "TELEOP_PSM",
             "configure-parameter":
             {

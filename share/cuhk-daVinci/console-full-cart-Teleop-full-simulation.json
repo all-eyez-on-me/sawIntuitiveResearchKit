@@ -1,0 +1,109 @@
+/* -*- Mode: Javascript; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+{
+    "arms":
+    [
+        {
+            "name": "SUJ",
+            "type": "SUJ",
+            "simulation": "KINEMATIC",
+            "kinematic": "suj-simulated.json",
+            "base-frame": {
+                "component": "ECM",
+                "interface": "Robot"
+            }
+        }
+        ,
+        {
+            "name": "ECM",
+            "type": "ECM",
+            "simulation": "KINEMATIC",
+            "pid": "sawControllersPID-ECM.xml",
+            "kinematic": "ecm-straight.json",
+            "base-frame": {
+                "component": "SUJ",
+                "interface": "ECM"
+            }
+        }
+        ,
+        {
+            "name": "PSM1",
+            "type": "PSM",
+            "simulation": "KINEMATIC",
+            "pid": "sawControllersPID-PSM.xml",
+            "kinematic": "psm-large-needle-driver.json",
+            "base-frame": {
+                "component": "SUJ",
+                "interface": "PSM1"
+            }
+        }
+        ,
+        {
+            "name": "PSM2",
+            "type": "PSM",
+            "simulation": "KINEMATIC",
+            "pid": "sawControllersPID-PSM.xml",
+            "kinematic": "psm-large-needle-driver.json",
+            "base-frame": {
+                "component": "SUJ",
+                "interface": "PSM2"
+            }
+        }
+        ,
+        {
+            "name": "MTMR",
+            "type": "MTM",
+            "simulation": "KINEMATIC",
+            "pid": "sawControllersPID-MTMR.xml",
+            "arm": "MTMR-31519.json",
+            "base-frame": {
+                "reference-frame": "HRSV",
+                "transform": [[ -1.0,  0.0,          0.0,         -0.180],
+                              [  0.0,  0.866025404,  0.5,          0.400],
+                              [  0.0,  0.5,         -0.866025404,  0.475],
+                              [  0.0,  0.0,          0.0,          1.0]]
+            }
+        }
+        ,
+        {
+            "name": "MTML",
+            "type": "MTM",
+            "simulation": "KINEMATIC",
+            "pid": "sawControllersPID-MTML.xml",
+            "arm": "MTML-41878.json",
+            "base-frame": {
+                "reference-frame": "HRSV",
+                "transform": [[ -1.0,  0.0,          0.0,          0.180],
+                              [  0.0,  0.866025404,  0.5,          0.400],
+                              [  0.0,  0.5,         -0.866025404,  0.475],
+                              [  0.0,  0.0,          0.0,          1.0]]
+            }
+        }
+    ]
+    ,
+    "psm-teleops":
+    [
+        {
+            "simulation": true,
+            "mtm": "MTMR",
+            "psm": "PSM1",
+            "type": "TELEOP_PSM"
+        }
+        ,
+        {
+            "simulation": true,
+            "mtm": "MTML",
+            "psm": "PSM2",
+            "type": "TELEOP_PSM"
+        }
+    ]
+    ,
+    "ecm-teleop":
+    {
+        "simulation": true,
+        "mtm-left": "MTML",
+        "mtm-right": "MTMR",
+        "ecm": "ECM"
+    }
+    ,
+    "simulation": true
+}
